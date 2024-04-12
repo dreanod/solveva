@@ -1,0 +1,71 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reinsurance Exercise</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="wrapper">
+    <h1>Reinsurance Exercise</h1>
+
+    <h2>Part 1: NEL, TVAR and Premium for Reinsurance Structures</h2>
+
+    <p>It was the first time I was using TypeScript and I've never written as many
+      lines of Javascript. So expect the code to look a bit weird ^^.
+      But hopefully it's readable enough!</p>
+
+    <p>The main areas of improvement would be:</p>
+    <ul>
+      <li>With my R backgound I tend to have a functional rather than object approach. I would like refactor my code to introduce a Losses class and be able to chain
+       operations with methods.</li>
+      <li>TypeScript being characterized by strong types, I first tried to enforce
+        types in my code. But I had to give up on that because I'm not used to
+        it and it was taking me too much time.</li>
+    </ul>
+
+    <table id="res1" class="table table-borderless table-striped table-earning">
+      <thead>
+        <tr>
+          <th>Structure</th>
+          <th>NEL</th>
+          <th>99% VaR</th>
+          <th>99% TVaR</th>
+          <th>Premium</th>
+        </tr>
+      </thead>
+      <tbody id="table1Body"></tbody>
+    </table>
+
+    <h2>Part 2: Lag Factor Calculation</h2>
+
+    <p>I was not sure how to interpret this part of the question:</p>
+
+    <blockquote>
+       For this average payment pattern we just add all payment patterns (regardless of loss size) and divide each entry of the vector by the number of losses.
+    </blockquote>
+
+    <p>It sounds like we should calculate a lag factor for each individual loss and then average them. The problem is that what to do when a net loss stays 0
+      between two years. In this case the lag factor is undefined.</p>
+
+    <p>If the goal is to have a lag factor to develop aggregate losses over time,
+        I would suggest to look at the development of the average expected loss 
+        over time. This is what I did for the results below.</p>
+
+    <table id="res2" class="table table-borderless table-striped table-earning">
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Net Reported Losses</th>
+          <th>Cumulative Lag Factor</th>
+          <th>Incremental Lag Factor</th>
+        </tr>
+      </thead>
+      <tbody id="table2Body"></tbody>
+    </table>
+  </div>
+
+  <script src='solveva.js'></script>
+</body>
+</html>
